@@ -28,7 +28,7 @@ public class Teszt {
                     zh = false;
                 String nev = sor.next();
 
-                sor.useDelimiter(";");
+                sor.useDelimiter(".");
                 int ev = Integer.parseInt(sor.next());
                 int ho = Integer.parseInt(sor.next());
                 sor.useDelimiter(";");
