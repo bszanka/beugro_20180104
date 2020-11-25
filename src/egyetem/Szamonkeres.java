@@ -4,24 +4,24 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public abstract class Szamonkeres implements Comparable<Szamonkeres> {
-    private String megnevezes;
+    private String nev;
     private LocalDateTime kezdes;
     private boolean irasbeli;
     private int[] pontszam;
 
-    public Szamonkeres(String megnevezes, LocalDateTime kezdes, boolean irasbeli, int[] pontszam) {
-        this.megnevezes = megnevezes;
+    public Szamonkeres(String nev, LocalDateTime kezdes, boolean irasbeli, int[] pontszam) {
+        this.nev = nev;
         this.kezdes = kezdes;
         this.irasbeli = irasbeli;
         this.pontszam = pontszam;
     }
 
-    public String getMegnevezes() {
-        return megnevezes;
+    public String getNev() {
+        return nev;
     }
 
-    public void setMegnevezes(String megnevezes) {
-        this.megnevezes = megnevezes;
+    public void setNev(String nev) {
+        this.nev = nev;
     }
 
     public LocalDateTime getKezdes() {
@@ -72,26 +72,26 @@ public abstract class Szamonkeres implements Comparable<Szamonkeres> {
         if (this == o) return true;
         if (!(o instanceof Szamonkeres)) return false;
         Szamonkeres that = (Szamonkeres) o;
-        return Objects.equals(megnevezes, that.megnevezes);
+        return Objects.equals(nev, that.nev);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(megnevezes);
+        return Objects.hash(nev);
     }
 
     @Override
     public String toString() {
-        return this.megnevezes + (this.irasbeli ? " írásbeli számonkérés ("
+        return this.nev + (this.irasbeli ? " írásbeli számonkérés ("
                 : " szóbeli számonkérés (") + kezdesToString(kezdes) + ")";
     }
 
     @Override
     public int compareTo(Szamonkeres o) {
         int kulonbseg =
-                kezdesToString(this.kezdes).compareTo(kezdesToString(o.kezdes));
-        if(kulonbseg != 0)
-            return this.megnevezes.compareTo(o.megnevezes);
+                kezdesToString(kezdes).compareTo(kezdesToString(o.kezdes));
+        if(kulonbseg == 0)
+            return nev.compareTo(o.nev);
         return -kulonbseg;
     }
 }
