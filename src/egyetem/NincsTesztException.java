@@ -1,8 +1,7 @@
 package egyetem;
 
 public class NincsTesztException extends Exception {
-    @Override
-    public String getMessage() {
-        return "Nincs teszt.\n";
+    public NincsTesztException(String message) {
+        super(message);
     }
 }

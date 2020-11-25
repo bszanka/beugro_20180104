@@ -30,4 +30,14 @@ public class FelevesTesztek implements Tanulnivalok {
     public List<Szamonkeres> tesztek(Boolean vizsgak, Boolean irasbelik) {
         return null;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder res = null;
+        res.append(felevAzonosito + "\n");
+        for (Szamonkeres s : felevesTesztek) {
+            res.append(s.toString() + "\n");
+        }
+        return res.toString();
+    }
 }
