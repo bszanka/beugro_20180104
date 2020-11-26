@@ -5,6 +5,7 @@ import egyetem.Szamonkeres;
 import egyetem.Tanulnivalok;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FelevesTesztek implements Tanulnivalok {
@@ -18,12 +19,24 @@ public class FelevesTesztek implements Tanulnivalok {
 
     @Override
     public void hozzaad(Szamonkeres teszt) {
-
+        this.felevesTesztek.add(teszt);
     }
 
     @Override
     public double atlagPontszam() throws NincsTesztException {
-        return 0;
+        int sum = 0;
+        int db = 0;
+        for (Szamonkeres s : felevesTesztek) {
+            int[] pontszamokTomb = s.getPontszam();
+            for (int i = 0; i < pontszamokTomb.length; i++) {
+                if(pontszamokTomb[i] != 0) {
+                    sum += pontszamokTomb[i];
+                    db++;
+                }
+            }
+        }
+        double atlag = (double)sum/(double)db;
+        return atlag;
     }
 
     @Override
