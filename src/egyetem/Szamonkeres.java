@@ -50,11 +50,11 @@ public abstract class Szamonkeres implements Comparable<Szamonkeres> {
 
     public String kezdesToString(LocalDateTime kezdes){
         StringBuilder sb = new StringBuilder();
-        sb.append(kezdes.getYear());
-        sb.append(kezdes.getMonth());
-        sb.append(kezdes.getDayOfYear());
-        sb.append(" " + kezdes.getHour());
-        sb.append(kezdes.getMinute());
+        sb.append(kezdes.getYear() + ". ");
+        sb.append((kezdes.getMonthValue() < 10 ? "0": "") + kezdes.getMonthValue() + ". ");
+        sb.append((kezdes.getDayOfMonth() < 10 ? "0": "") + kezdes.getDayOfMonth() + ". ");
+        sb.append((kezdes.getHour() < 10 ? "0": "") + kezdes.getHour() + ":");
+        sb.append((kezdes.getMinute() < 10 ? "0": "") + kezdes.getMinute());
         return sb.toString();
     }
 

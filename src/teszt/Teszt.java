@@ -6,6 +6,7 @@ import egyetem.Zh;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,6 @@ import java.util.Scanner;
 public class Teszt {
 
     public static void main(String[] args) {
-
         if(args[0].length() == 0)
             System.err.println("Nincs megadva parancssori argumentum!");
         try {
@@ -28,36 +28,33 @@ public class Teszt {
                     zh = false;
                 String nev = sor.next();
 
-                sor.useDelimiter(".");
+                sor.useDelimiter("\\W");
                 int ev = Integer.parseInt(sor.next());
                 int ho = Integer.parseInt(sor.next());
-                sor.useDelimiter(";");
                 int nap = Integer.parseInt(sor.next());
-
-                sor.useDelimiter(":");
                 int ora = Integer.parseInt(sor.next());
-                sor.useDelimiter(";");
                 int perc = Integer.parseInt(sor.next());
-
                 LocalDateTime kezdes = LocalDateTime.of(ev, ho, nap, ora, perc);
-                System.out.println(kezdes.toString());
+
+
                 boolean irasbeli = true;
-                if(!zh) {
-                    if (sor.next().equals("S"))
+                if(zh == false && sor.next().equals("S"))
                         irasbeli = false;
-                }
-                int[] pontszamok = new int[0];
-                sor.useDelimiter(",");
+                sor.useDelimiter("\\W");
+                int[] pontszamok = new int[100];
+                //^ 100 helyett valami dinamikusat?
+                int i = 0;
                 while(sor.hasNext()) {
-                    int i = 0;
-                    pontszamok[i] = sor.nextInt();
+                    pontszamok[i] = Integer.parseInt(sor.next());
+                    i++;
                 }
 
                 szk.add(zh ? new Zh(nev, kezdes, irasbeli, pontszamok)
                         : new Vizsga(nev, kezdes, irasbeli, pontszamok));
             }
             for (Szamonkeres sz : szk) {
-                sz.toString();
+                System.out.println(sz.toString());
+                System.out.println(sz.maxPontszam(sz.getPontszam()));
             }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
