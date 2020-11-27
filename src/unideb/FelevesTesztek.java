@@ -2,9 +2,7 @@ package unideb;
 
 import egyetem.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class FelevesTesztek implements Tanulnivalok {
     private String felevAzonosito;
@@ -40,52 +38,66 @@ public class FelevesTesztek implements Tanulnivalok {
     // írásbeliket, ha hamis, akkor csak a szóbeliket, ha null, akkor mindegyiket
 
     @Override
-    public List<Szamonkeres> tesztek(Boolean vizsgak, Boolean irasbelik) {
+    public List<Szamonkeres> tesztek(Boolean vizsgak, Boolean irasbelik){
         List<Szamonkeres> res = new ArrayList<>();
-        if(!vizsgak && !irasbelik)
-            System.out.println("Üres a lista!");
-//        if(vizsgak == null && irasbelik == null) {
-//            res.addAll(this.felevesTesztek);
-//            return res;
-//        }
-        if(!vizsgak && (irasbelik/* || irasbelik == null*/)){
-            for (Szamonkeres s : this.felevesTesztek) {
-                if(s instanceof Zh)
-                    res.add(s);
+        System.out.println(vizsgak == null ? "null" : "nemnull");
+            if (!vizsgak && !irasbelik) {
+                System.out.println("Üres a lista!");
             }
-            return res;
-        }
-       if(vizsgak && irasbelik) {
-           for (Szamonkeres s : this.felevesTesztek) {
-               if (s instanceof Vizsga && s.isIrasbeli())
-                   res.add(s);
-           }
-       return res;
-       }
-        if((vizsgak/* || vizsgak == null*/) && !irasbelik) {
-            for (Szamonkeres s : this.felevesTesztek) {
-                if (s instanceof Vizsga && !s.isIrasbeli())
-                    res.add(s);
+
+            if (vizsgak && irasbelik) {
+                for (Szamonkeres s : this.felevesTesztek) {
+                    if (s instanceof Vizsga && s.isIrasbeli())
+                        res.add(s);
+                }
+                return res;
             }
-        return res;
-        }
-//        if(vizsgak == null && irasbelik) {
-//            for (Szamonkeres s : this.felevesTesztek) {
-//                if (s.isIrasbeli())
-//                    res.add(s);
-//            }
-//            return res;
-//        }
+            if(vizsgak == null && irasbelik == null) {
+                res.addAll(this.felevesTesztek);
+                return res;
+            }
+            if (!vizsgak && (irasbelik || irasbelik == null)) {
+                for (Szamonkeres s : this.felevesTesztek) {
+                    if (s instanceof Zh)
+                        res.add(s);
+                }
+                return res;
+            }
+            if ((vizsgak || vizsgak == null) && !irasbelik) {
+                for (Szamonkeres s : this.felevesTesztek) {
+                    if (s instanceof Vizsga && !s.isIrasbeli())
+                        res.add(s);
+                }
+                return res;
+            }
+            if (vizsgak == null && irasbelik) {
+                for (Szamonkeres s : this.felevesTesztek) {
+                    if (s.isIrasbeli())
+                        res.add(s);
+                }
+                return res;
+            }
         return res;
     }
 
     @Override
     public String toString() {
-        StringBuilder res = null;
+        StringBuilder res = new StringBuilder();
         res.append(felevAzonosito + "\n");
         for (Szamonkeres s : felevesTesztek) {
             res.append(s.toString() + "\n");
         }
         return res.toString();
+    }
+
+    public Set<Zh> zhAtlagFolott() throws NincsTesztException {
+        Set<Zh> zhk = new HashSet<>();
+        for (Szamonkeres sz : this.felevesTesztek) {
+            if(sz instanceof Zh && (sz.maxPontszam(sz.getPontszam()) > this.atlagPontszam()))
+                zhk.add((Zh) sz);
+        }
+        if(zhk.isEmpty())
+            throw new NincsTesztException("Nincs ilyen ZH!");
+        return zhk;
     }
 }

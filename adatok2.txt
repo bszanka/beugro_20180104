@@ -1,0 +1,4 @@
+V;Adatbázisrendszerek;2017.02.10;10:00;I;14,8,14,10,18,8,12,8,8
+V;Adatbázisrendszerek;2018.01.12;10:00;I;14,15,15,10,4,8,8,8,18
+V;A mesterséges intelligencia alapjai;2017.06.01;08:00;S;1
+Z;Adatbázisrendszerek;2018.01.04;10:00;1,1,1

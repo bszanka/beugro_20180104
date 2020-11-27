@@ -11,9 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Teszt {
     public static boolean keres(List<Szamonkeres> szk, String nev, String fajlnev) {
@@ -92,19 +90,31 @@ public class Teszt {
                 szk.add(zh ? new Zh(nev, kezdes, irasbeli, pontszamok)
                         : new Vizsga(nev, kezdes, irasbeli, pontszamok));
             }
-            for (Szamonkeres sz : szk) {
-                System.out.println(sz.toString());
-            }
-
+            System.out.println("7. Feladat: ");
             FelevesTesztek ft = new FelevesTesztek(args[1].length() > 0 ? args[1] : "2017/2018/1.félév", szk);
-//            Tesztek:
-//            System.out.println("Átlag: " + ft.atlagPontszam() + " pont."); //5.6
-//
-//            List<Szamonkeres> teszt = new ArrayList<>(ft.tesztek(true, false));
+//            System.out.println(ft.toString());
+            //Megnézni miért dob NullPointerEx-et, ha null a paraméter. Boolean is lehet null!?
+//            List<Szamonkeres> teszt = new ArrayList<>(ft.tesztek(null, true));
 //            for (Szamonkeres sz : teszt) {
 //                System.out.println(sz.toString());
 //            }
-            keres(szk,"rendszer", "kimenet.txt");
+
+//            System.out.println("8. Feladat: ");
+//            System.out.println("Kérem adja meg, hogy mely tárgy számonkérését keresi: ");
+//            Scanner stdin = new Scanner(System.in);
+//            stdin.useDelimiter("\n");
+//            String input1 = stdin.next();
+//            System.out.println("Kérem adja meg, hogy mely fájlba kívánja menteni: ");
+//            String input2 = stdin.next();
+//            System.out.println(input1 + "\n" + input2);
+//            keres(szk,input1, input2);
+
+            System.out.println("9. Feladat: ");
+            Set<Zh> atlagFolottiek = new HashSet<>(ft.zhAtlagFolott());
+            for (Zh z : atlagFolottiek) {
+                System.out.println(z.toString());
+            }
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -112,9 +122,10 @@ public class Teszt {
         } catch (IllegalArgumentException e) {
             e.getMessage();
         }
-//        catch (NincsTesztException e) {
-//            e.printStackTrace();
-//        }
+        catch (NincsTesztException e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
     }
 }
 
