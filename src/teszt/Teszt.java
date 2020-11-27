@@ -42,17 +42,13 @@ public class Teszt {
                 boolean irasbeli = true;
                 if (!zh && sor.next().equals("S"))
                     irasbeli = false;
-                int db = 0;
+                int db = 1;
                 sor.useDelimiter("\n");
                 String maradek = sor.next();
-                db = maradek.length() - 1;
-//                feltételezzük, hogy az utolsó helyen nem áll vessző:
                 for (int i = 0; i < maradek.length(); i++) {
                     if (maradek.charAt(i) == ',')
-                        db--;
+                        db++;
                 }
-
-                // SZÁMOLJUK MEG A VESSZŐKET +1 !!!!!! ÚJRACSINÁLNI! (maradjon 1 scan)
                 Scanner maradekScan = new Scanner(maradek);
                 maradekScan.useDelimiter("\\W");
                 int[] pontszamok = new int[db];
@@ -68,11 +64,16 @@ public class Teszt {
             }
             for (Szamonkeres sz : szk) {
                 System.out.println(sz.toString());
-                System.out.println(sz.maxPontszam(sz.getPontszam()));
             }
 
             FelevesTesztek ft = new FelevesTesztek(args[1].length() > 0 ? args[1] : "2017/2018/1.félév", szk);
-            System.out.println(ft.atlagPontszam());
+//            Tesztek:
+//            System.out.println("Átlag: " + ft.atlagPontszam() + " pont."); //5.6
+//
+//            List<Szamonkeres> teszt = new ArrayList<>(ft.tesztek(true, false));
+//            for (Szamonkeres sz : teszt) {
+//                System.out.println(sz.toString());
+//            }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
