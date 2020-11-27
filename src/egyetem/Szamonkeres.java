@@ -60,9 +60,8 @@ public abstract class Szamonkeres implements Comparable<Szamonkeres> {
 
     public int maxPontszam(int[] pontszam){
         int max = 0;
-        for (int i = 0; i < pontszam.length; i++) {
-            if(pontszam[i] >= max)
-                max = pontszam[i];
+        for (int i : pontszam) {
+            max += i;
         }
         return max;
     }
