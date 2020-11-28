@@ -41,21 +41,13 @@ public class FelevesTesztek implements Tanulnivalok {
     public List<Szamonkeres> tesztek(Boolean vizsgak, Boolean irasbelik){
         List<Szamonkeres> res = new ArrayList<>();
         System.out.println(vizsgak == null ? "null" : "nemnull");
-            if (!vizsgak && !irasbelik) {
-                System.out.println("Üres a lista!");
-            }
 
-            if (vizsgak && irasbelik) {
-                for (Szamonkeres s : this.felevesTesztek) {
-                    if (s instanceof Vizsga && s.isIrasbeli())
-                        res.add(s);
-                }
-                return res;
-            }
+        //  az összes vizsga & zh (szóbeli & írásbeli is)
             if(vizsgak == null && irasbelik == null) {
                 res.addAll(this.felevesTesztek);
                 return res;
             }
+        //  az összes zh
             if (!vizsgak && (irasbelik || irasbelik == null)) {
                 for (Szamonkeres s : this.felevesTesztek) {
                     if (s instanceof Zh)
@@ -63,6 +55,7 @@ public class FelevesTesztek implements Tanulnivalok {
                 }
                 return res;
             }
+        //  az összes szóbeli (vizsga)
             if ((vizsgak || vizsgak == null) && !irasbelik) {
                 for (Szamonkeres s : this.felevesTesztek) {
                     if (s instanceof Vizsga && !s.isIrasbeli())
@@ -70,6 +63,7 @@ public class FelevesTesztek implements Tanulnivalok {
                 }
                 return res;
             }
+        //  az összes írásbeli (vizsga & zh)
             if (vizsgak == null && irasbelik) {
                 for (Szamonkeres s : this.felevesTesztek) {
                     if (s.isIrasbeli())
@@ -77,7 +71,16 @@ public class FelevesTesztek implements Tanulnivalok {
                 }
                 return res;
             }
-        return res;
+
+        //  írásbeli vizsgák
+        if (vizsgak && irasbelik) {
+            for (Szamonkeres s : this.felevesTesztek) {
+                if (s instanceof Vizsga && s.isIrasbeli())
+                    res.add(s);
+            }
+            return res;
+        }
+            return res;
     }
 
     @Override

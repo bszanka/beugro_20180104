@@ -99,36 +99,36 @@ public class Teszt {
             }
             System.out.println("7. Feladat: ");
             FelevesTesztek ft = new FelevesTesztek(args[1].length() > 0 ? args[1] : "2017/2018/1.félév", szk);
-            System.out.println(ft.toString());
-//            //Megnézni miért dob NullPointerException-t, ha null a paraméter. Boolean is lehet null!?
-//            List<Szamonkeres> teszt = new ArrayList<>(ft.tesztek(null, true));
-//            for (Szamonkeres sz : teszt) {
-//                System.out.println(sz.toString());
-//            }
-
-            System.out.println("8. Feladat: ");
-            System.out.println("Kérem adja meg, hogy mely tárgy számonkérését keresi: ");
-            Scanner stdin = new Scanner(System.in);
-            stdin.useDelimiter("\n");
-            String input1 = stdin.next();
-            System.out.println("Kérem adja meg, hogy mely fájlba kívánja menteni: ");
-            String input2 = stdin.next();
-            System.out.println(input1 + "\n" + input2);
-            keres(szk,input1, input2);
-
-            System.out.println("9. Feladat: ");
-            Set<Zh> atlagFolottiek = new HashSet<>(ft.zhAtlagFolott());
-            for (Zh z : atlagFolottiek) {
-                System.out.println(z.toString());
+//            System.out.println(ft.toString());
+            //Megnézni miért dob NullPointerException-t, ha null a paraméter. Boolean is lehet null!?
+            List<Szamonkeres> teszt = new ArrayList<>(ft.tesztek(null, null));
+            for (Szamonkeres sz : teszt) {
+                System.out.println(sz.toString());
             }
 
-            System.out.println("10. Feladat: ");
-            ft.nagybetusit("2018");
-            System.out.println(ft.toString());
-            System.out.println("11. Feladat: ");
-            Tanulnivalok[] tomb = new Tanulnivalok[1];
-            tomb[0] = ft;
-            System.out.println(szobeliDarabszam(tomb));
+//            System.out.println("8. Feladat: ");
+//            System.out.println("Kérem adja meg, hogy mely tárgy számonkérését keresi: ");
+//            Scanner stdin = new Scanner(System.in);
+//            stdin.useDelimiter("\n");
+//            String input1 = stdin.next();
+//            System.out.println("Kérem adja meg, hogy mely fájlba kívánja menteni: ");
+//            String input2 = stdin.next();
+//            System.out.println(input1 + "\n" + input2);
+//            keres(szk,input1, input2);
+//
+//            System.out.println("9. Feladat: ");
+//            Set<Zh> atlagFolottiek = new HashSet<>(ft.zhAtlagFolott());
+//            for (Zh z : atlagFolottiek) {
+//                System.out.println(z.toString());
+//            }
+//
+//            System.out.println("10. Feladat: ");
+//            ft.nagybetusit("2018");
+//            System.out.println(ft.toString());
+//            System.out.println("11. Feladat: ");
+//            Tanulnivalok[] tomb = new Tanulnivalok[1];
+//            tomb[0] = ft;
+//            System.out.println(szobeliDarabszam(tomb));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -136,10 +136,10 @@ public class Teszt {
         } catch (IllegalArgumentException e) {
             e.getMessage();
         }
-        catch (NincsTesztException e) {
-            e.printStackTrace();
-            e.getMessage();
-        }
+//        catch (NincsTesztException e) {
+//            e.printStackTrace();
+//            e.getMessage();
+//        }
     }
 }
 
