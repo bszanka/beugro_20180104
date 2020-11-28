@@ -24,12 +24,11 @@ public class Teszt {
                     van = true;
                     sb.append(sz.getNev() + " ("
                             + sz.kezdesToString(sz.getKezdes())
-                            + ") Max pontszám: " + sz.maxPontszam(sz.getPontszam())+ " pont \n");
+                            + ") Max pontszám: " + sz.maxPontszam(sz.getPontszam()) + " pont \n");
                     sum += sz.maxPontszam(sz.getPontszam());
                 }
             }
             sb.append(sum);
-//            System.out.println(sb.toString());
             fw.append(sb.toString());
             // MINDIG ZÁRJUK BE, MERT FLUSHOLJA A TARTALMÁT HA NEM!
             fw.close();
@@ -41,12 +40,13 @@ public class Teszt {
         return van;
     }
 
-    public static int szobeliDarabszam(Tanulnivalok[] tomb){
+    public static int szobeliDarabszam(Tanulnivalok[] tomb) {
         int db = 0;
         for (Tanulnivalok t : tomb) {
-            if(t.toString().contains("szóbeli")){
+            if (t.toString().contains("szóbeli")) {
                 db++;
-                System.out.println("Szóbeli found!");}
+                System.out.println("Szóbeli found!");
+            }
         }
         return db;
     }
@@ -99,47 +99,45 @@ public class Teszt {
             }
             System.out.println("7. Feladat: ");
             FelevesTesztek ft = new FelevesTesztek(args[1].length() > 0 ? args[1] : "2017/2018/1.félév", szk);
-//            System.out.println(ft.toString());
-            //Megnézni miért dob NullPointerException-t, ha null a paraméter. Boolean is lehet null!?
+            System.out.println(ft.toString());
             List<Szamonkeres> teszt = new ArrayList<>(ft.tesztek(null, null));
             for (Szamonkeres sz : teszt) {
                 System.out.println(sz.toString());
             }
 
-//            System.out.println("8. Feladat: ");
-//            System.out.println("Kérem adja meg, hogy mely tárgy számonkérését keresi: ");
-//            Scanner stdin = new Scanner(System.in);
-//            stdin.useDelimiter("\n");
-//            String input1 = stdin.next();
-//            System.out.println("Kérem adja meg, hogy mely fájlba kívánja menteni: ");
-//            String input2 = stdin.next();
-//            System.out.println(input1 + "\n" + input2);
-//            keres(szk,input1, input2);
-//
-//            System.out.println("9. Feladat: ");
-//            Set<Zh> atlagFolottiek = new HashSet<>(ft.zhAtlagFolott());
-//            for (Zh z : atlagFolottiek) {
-//                System.out.println(z.toString());
-//            }
-//
-//            System.out.println("10. Feladat: ");
-//            ft.nagybetusit("2018");
-//            System.out.println(ft.toString());
-//            System.out.println("11. Feladat: ");
-//            Tanulnivalok[] tomb = new Tanulnivalok[1];
-//            tomb[0] = ft;
-//            System.out.println(szobeliDarabszam(tomb));
+            System.out.println("8. Feladat: ");
+            System.out.println("Kérem adja meg, hogy mely tárgy számonkérését keresi: ");
+            Scanner stdin = new Scanner(System.in);
+            stdin.useDelimiter("\n");
+            String input1 = stdin.next();
+            System.out.println("Kérem adja meg, hogy mely fájlba kívánja menteni: ");
+            String input2 = stdin.next();
+            System.out.println(input1 + "\n" + input2);
+            keres(szk, input1, input2);
+
+            System.out.println("9. Feladat: ");
+            Set<Zh> atlagFolottiek = new HashSet<>(ft.zhAtlagFolott());
+            for (Zh z : atlagFolottiek) {
+                System.out.println(z.toString());
+            }
+
+            System.out.println("10. Feladat: ");
+            ft.nagybetusit("2018");
+            System.out.println(ft.toString());
+            System.out.println("11. Feladat: ");
+            Tanulnivalok[] tomb = new Tanulnivalok[1];
+            tomb[0] = ft;
+            System.out.println(szobeliDarabszam(tomb));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.err.println("Nem található ilyen nevű fájl!");
         } catch (IllegalArgumentException e) {
             e.getMessage();
+        } catch (NincsTesztException e) {
+            e.printStackTrace();
+            e.getMessage();
         }
-//        catch (NincsTesztException e) {
-//            e.printStackTrace();
-//            e.getMessage();
-//        }
     }
 }
 
