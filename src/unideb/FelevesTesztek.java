@@ -100,4 +100,11 @@ public class FelevesTesztek implements Tanulnivalok {
             throw new NincsTesztException("Nincs ilyen ZH!");
         return zhk;
     }
+
+    public void nagybetusit(String evszam){
+        for (Szamonkeres s : felevesTesztek) {
+            if(s.kezdesToString(s.getKezdes()).contains(evszam))
+                s.setNev(s.getNev().toUpperCase());
+        }
+    }
 }
